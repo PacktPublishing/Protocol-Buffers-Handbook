@@ -1,0 +1,22 @@
+// this schema is intentionally not compiling
+
+message PhoneNumber {
+	enum Type {
+		Mobile,
+		Work,
+		Fax
+	}
+
+	Type type;
+	string number;
+}
+
+message Email {
+	enum Type {
+		Personal,
+		Work,
+	}
+
+	Type type;
+	string email;
+}

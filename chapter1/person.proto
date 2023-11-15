@@ -1,0 +1,7 @@
+// this schema is intentionally not compiling
+
+message Person {
+  string name;
+	uint32 age;
+	repeated Person friends; // an array
+}
