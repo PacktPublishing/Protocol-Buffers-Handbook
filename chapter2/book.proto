@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+message PaperBack { /*…*/ }
+message Ebook { /*…*/ }
+message AudioBook { /*…*/ }
+
+message Book {
+  oneof book_type {
+    PaperBack paperback = 1;
+    Ebook ebook = 2;
+    AudioBook audiobook = 3;
+  }
+}
+
+message ListBooksRequest { /*…*/ }
+message ListBooksResponse { /*…*/ }
+message GetBookRequest { /*…*/}
+message CreateBookRequest { /*…*/}
+message UpdateBookRequest { /*…*/}
+message DeleteBookRequest { /*…*/}
+
+service BookService {
+  rpc ListBooks(ListBooksRequest) returns (ListBooksResponse);
+  rpc GetBook(GetBookRequest) returns (Book);
+  rpc CreateBook(CreateBookRequest) returns (Book);
+  rpc UpdateBook(UpdateBookRequest) returns (Book);
+  rpc DeleteBook(DeleteBookRequest) returns (google.protobuf.Empty);
+}

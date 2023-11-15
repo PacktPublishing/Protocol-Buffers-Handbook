@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+message Cat {
+  enum Breed {
+    BREED_UNSPECIFIED = 0;
+    BREED_SIAMESE = 1;
+    BREED_PERSIAN = 2;
+    //...
+  }
+}
+
+message Dog {
+  enum Breed {
+    BREED_UNSPECIFIED = 0;
+    BREED_GERMAN_SHEPERD = 1;
+    BREED_BULLDOG = 2;
+    //...
+  }
+}

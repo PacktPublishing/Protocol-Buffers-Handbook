@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+enum OldPhoneType { 
+  option deprecated = true;
+  //...
+}
+
+enum PhoneType {
+  PHONE_TYPE_UNSPECIFIED = 0;
+  PHONE_TYPE_MOBILE = 1;
+  PHONE_TYPE_HOME = 2;
+  PHONE_TYPE_FAXHOME = 3 [
+    deprecated = true,
+    description = "who uses fax machines anymore?"
+  ];
+}
+
+message Phone {
+  PhoneType type = 1;
+}

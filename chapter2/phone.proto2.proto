@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+enum PhoneType {
+  PHONE_TYPE_MOBILE = 0;
+  PHONE_TYPE_HOME = 1;
+}
+
+message Phone {
+  optional PhoneType type = 1;
+}
