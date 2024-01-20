@@ -1,0 +1,10 @@
+# proto-file: oneofs.proto
+# proto-message: Book
+hard_cover {
+  pages: 200
+}
+audio_book {
+  duration {
+    seconds: 9000 # 2h30
+  }
+}

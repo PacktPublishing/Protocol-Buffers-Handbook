@@ -1,0 +1,3 @@
+# proto-file: enums.proto
+# proto-message: Monster
+type: MONSTER_TYPE_VAMPIRE

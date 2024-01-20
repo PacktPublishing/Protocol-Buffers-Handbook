@@ -1,0 +1,6 @@
+# proto-file: maps.proto
+# proto-message: WordCount
+occurrences: [
+  { key: "possible", value: 8 },
+  { key: "values", value: 10 }
+]

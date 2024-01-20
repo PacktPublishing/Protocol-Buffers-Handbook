@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto";
+
+message AudioBook {
+  google.protobuf.Duration duration = 1;
+  //...
+}
+
+message HardCover {
+  uint64 pages = 1;
+  //...
+}
+
+message Book {
+  oneof Type {
+    AudioBook audio_book = 1;
+    HardCover hard_cover = 2;
+  }
+}

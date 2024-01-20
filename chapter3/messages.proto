@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message Person {
+  uint32 age = 1;
+  repeated string middle_names = 2;
+}
+
+message SocialNetwork {
+  Person person = 1;
+  repeated Person friends = 2;
+}

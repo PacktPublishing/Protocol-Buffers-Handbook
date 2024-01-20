@@ -1,0 +1,10 @@
+# proto-file: payment.proto
+# proto-message: Payment
+id: "a_unique_id"
+label: "Total Amount"
+quantity: -1
+amount {
+  currency_code: "USD"
+  units: 9
+  nanos: 990000000
+}

@@ -1,0 +1,10 @@
+# proto-file: messages.proto
+# proto-message: SocialNetwork
+person {
+  age: 42
+  middle_names: [ “james”, “henry” ]
+}
+friends: [
+  { age: 42 middle_names: [ “james”, “henry” ] },
+  { age: 24 middle_names [“henry”, “james”] }
+]

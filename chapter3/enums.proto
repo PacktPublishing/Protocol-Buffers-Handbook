@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+message Monster {
+  enum Type {
+    MONSTER_TYPE_UNSPECIFIED = 0;
+    MONSTER_TYPE_VAMPIRE = 1;
+    MONSTER_TYPE_WEREWOLF = 2;
+    //...
+  }
+
+  Type type = 1;
+}

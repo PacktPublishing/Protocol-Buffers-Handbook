@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message WordCount {
+  map<string, uint64> occurrences = 1;
+}

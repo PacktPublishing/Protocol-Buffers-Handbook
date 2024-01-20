@@ -1,0 +1,4 @@
+# proto-file: scalar_values.proto
+# proto-message: Person
+age: 42
+middle_names: [ "james", "henry" ]

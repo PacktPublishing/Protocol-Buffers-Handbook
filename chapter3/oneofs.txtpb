@@ -1,0 +1,5 @@
+# proto-file: oneofs.proto
+# proto-message: Book
+hard_cover {
+  pages: 200
+}
