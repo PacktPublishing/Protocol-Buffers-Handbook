@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+message Name {
+  string name = 1 [deprecated = true];
+  google.protobuf.Empty empty = 2;
+}
