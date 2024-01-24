@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message Encoding {
+  repeated uint64 us = 1;
+  repeated string ss = 2;
+}

@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message Encoding {
+  map<string, int32> m = 1;
+}

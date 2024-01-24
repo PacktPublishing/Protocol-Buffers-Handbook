@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message Encoding {
+  int32 i = 1;
+}

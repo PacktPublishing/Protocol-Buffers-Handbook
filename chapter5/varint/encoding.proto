@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message Encoding {
+  int32 i32 = 1;
+  int64 i64 = 2;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+message TagSize {
+  int32 i = 16;
+  int32 i2 = 2048;
+  int32 i3 = 262144;
+  int32 i4 = 33554432;
+  int32 i5 = 536870911;
+}

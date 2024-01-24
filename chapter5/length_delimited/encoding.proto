@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+message Encoding {
+  string s = 1;
+  Embedded e = 2;
+
+  message Embedded {
+    int32 i = 1;
+  }
+}
