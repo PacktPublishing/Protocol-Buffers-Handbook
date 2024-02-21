@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = "example.com/proto";
+
+message Id {
+  reserved 1;
+  reserved "value";
+
+  //string value = 2;
+  string uuid = 2;
+}

@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option go_package = "example.com/proto";
+
+message Id {
+  uint32 value = 1;
+}
