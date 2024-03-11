@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter7/proto";
+
+message Person {
+  message PhoneNumber {
+    enum Type {
+      TYPE_UNSPECIFIED = 0;
+      TYPE_MOBILE = 1;
+      TYPE_HOME = 2;
+      TYPE_WORK = 3;
+    }
+
+    string number = 1 [debug_redact = true];
+    Type type = 2;
+  }
+
+  string email = 1 [debug_redact = true];
+  repeated PhoneNumber phones = 2;
+}
+
+message Company {
+  enum Department {
+    DEPARTMENT_UNSPECIFIED = 0;
+    DEPARTMENT_HR = 1;
+    DEPARTMENT_CUSTOMER_SERVICE = 2;
+  }
+
+  message EmailAddress {
+    string email = 1 [debug_redact = true];
+    Department department = 2;
+  }
+
+  message PhoneNumber {
+    string number = 1 [debug_redact = true];
+    Department department = 2;
+  }
+
+  repeated EmailAddress emails = 1;
+  repeated PhoneNumber phones = 2;
+}
+
+message Contact {
+  google.protobuf.Timestamp last_updated = 1;
+
+  oneof kind {
+    Person person = 2;
+    Company company = 3;
+  }
+}
+
+message AddressBook {
+  map<string, Contact> contacts = 1;
+}
