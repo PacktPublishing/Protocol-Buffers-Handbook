@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "example.com/proto";
+option go_package = "github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter6/proto";
 
 message Id {
   uint32 value = 1;
