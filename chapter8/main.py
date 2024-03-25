@@ -17,9 +17,15 @@ DB_FILE_PATH: str = "addressbook.db"
 
 
 def read_from_db(db: IO[bytes]) -> pb.AddressBook:
+    data = db.read()
     book = pb.AddressBook()
-    book.ParseFromString(db.read())
+    book.ParseFromString(data)
     return book
+
+
+def write_to_db(db: IO[bytes], book: pb.AddressBook):
+    data = book.SerializeToString()
+    db.write(data)
 
 
 def str_to_phone_type(s: str) -> pb.Person.PhoneNumber.Type:
@@ -78,7 +84,7 @@ def add_person(db: IO[bytes], name: str, email: str, phone: str, phone_type: str
     contact.last_updated.CopyFrom(update_ts)
     contact.person.CopyFrom(person)
     book.contacts[name].CopyFrom(contact)
-    db.write(book.SerializeToString())
+    write_to_db(db, book)
 
 
 def add_company(db: IO[bytes], name: str, email: str, email_dep: str, phone: str, phone_dep: str):
@@ -111,7 +117,7 @@ def add_company(db: IO[bytes], name: str, email: str, email_dep: str, phone: str
     contact.last_updated.CopyFrom(update_ts)
     contact.company.CopyFrom(company)
     book.contacts[name].CopyFrom(contact)
-    db.write(book.SerializeToString())
+    write_to_db(db, book)
 
 
 def list_contacts(db: IO[bytes], redact: bool):
@@ -151,12 +157,14 @@ if __name__ == '__main__':
     add_parser.add_argument('--kind',
                             required=True,
                             type=str,
+                            choices={"per", "person", "cie", "company"},
                             help="the kind of contact (company or person).")
     add_parser.add_argument('--email',
                             type=str,
                             help="the contact's email.")
     add_parser.add_argument('--dep',
                             type=str,
+                            choices={"hr", "cs"},
                             help="the contact's department.")
     add_parser.add_argument('--phone',
                             type=str,
@@ -168,7 +176,7 @@ if __name__ == '__main__':
     list_parser = subparsers.add_parser('list')
     list_parser.add_argument(
         '--redact',
-        dest='redact', nargs='?',
+        nargs='?',
         const=True, default=False,
         type=bool,
         help='redacts private info'
@@ -177,13 +185,16 @@ if __name__ == '__main__':
     args = parser.parse_args(sys.argv[1:])
 
     if args.command == "add":
-        with os.fdopen(os.open(DB_FILE_PATH, os.O_RDWR | os.O_CREAT), 'rb+') as f:
+        fd = os.open(DB_FILE_PATH, os.O_RDWR | os.O_CREAT)
+        with os.fdopen(fd, 'rb+') as f:
             if args.kind in cie_keywords:
                 add_company(f, args.name, args.email, args.dep, args.phone, args.type)
             elif args.kind in per_keywords:
                 add_person(f, args.name, args.email, args.phone, args.type)
             else:
                 print("error: unknown kind", args.kind)
-    else:
+    elif args.command == "list":
         with open(DB_FILE_PATH, 'rb') as f:
             list_contacts(f, args.redact)
+    else:
+        print("unknown command: ", args.command)
