@@ -7,7 +7,7 @@ import "google/protobuf/descriptor.proto";
 option go_package = "github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter9/proto/validate";
 
 extend google.protobuf.MessageOptions {
-  optional FieldConstraints field = 1188;
+  FieldConstraints field = 1188;
 }
 
 message FieldConstraints {
@@ -17,6 +17,6 @@ message FieldConstraints {
 	TYPE_PHONE = 2;
   }
 
-  optional string name = 1;
-  optional Type type = 2;
+  string name = 1;
+  Type type = 2;
 }
