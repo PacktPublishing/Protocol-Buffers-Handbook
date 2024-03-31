@@ -74,16 +74,16 @@ func generateFunctions(gen *protogen.GeneratedFile, file *protogen.File) {
 		opts := msg.Desc.Options()
 		value, _ := proto.GetExtension(opts, validate.E_Field).(*validate.FieldConstraints)
 
-		if value == nil || value.Type == nil {
+		if value == nil {
 			continue
 		}
 
 		firstLetter := string(strings.ToLower(msg.GoIdent.GoName)[0])
 
-		switch *value.Type {
+		switch value.Type {
 		case validate.FieldConstraints_TYPE_PHONE:
 			gen.P("func (", firstLetter, " ", msg.GoIdent, ") CheckPhone() error {")
-			fieldName := strcase.ToCamel(*value.Name)
+			fieldName := strcase.ToCamel(value.Name)
 			field := fmt.Sprintf("%s.%s", firstLetter, fieldName)
 			gen.P("if !isPhoneNumber(", field, ") { return fmt.Errorf(\"%s is not a valid phone number\", ", field, ") }")
 			gen.P("return nil")
@@ -91,7 +91,7 @@ func generateFunctions(gen *protogen.GeneratedFile, file *protogen.File) {
 			gen.P()
 		case validate.FieldConstraints_TYPE_EMAIL:
 			gen.P("func (", firstLetter, " ", msg.GoIdent, ") CheckEmail() error {")
-			fieldName := strcase.ToCamel(*value.Name)
+			fieldName := strcase.ToCamel(value.Name)
 			field := fmt.Sprintf("%s.%s", firstLetter, fieldName)
 			gen.P("if !isEmail(", field, ") { return fmt.Errorf(\"%s is not a valid email\", ", field, ") }")
 			gen.P("return nil")
