@@ -3,11 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
-	"strings"
+	"slices"
 
-	"github.com/iancoleman/strcase"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/reflect/protoreflect"
 
 	pkg "github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter9/pkg/protoc-gen-check"
 	"github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter9/proto/validate"
@@ -78,22 +78,25 @@ func generateFunctions(gen *protogen.GeneratedFile, file *protogen.File) {
 			continue
 		}
 
-		firstLetter := string(strings.ToLower(msg.GoIdent.GoName)[0])
+		fieldDesc := msg.Desc.Fields().ByName(protoreflect.Name(value.Name))
+		if fieldDesc == nil {
+			continue
+		}
+		fieldIdx := slices.IndexFunc(msg.Fields, func(f *protogen.Field) bool {
+			return f.Desc == fieldDesc
+		})
+		fieldName := fmt.Sprintf("x.%s", msg.Fields[fieldIdx].GoName)
 
 		switch value.Type {
 		case validate.FieldConstraints_TYPE_PHONE:
-			gen.P("func (", firstLetter, " ", msg.GoIdent, ") CheckPhone() error {")
-			fieldName := strcase.ToCamel(value.Name)
-			field := fmt.Sprintf("%s.%s", firstLetter, fieldName)
-			gen.P("if !isPhoneNumber(", field, ") { return fmt.Errorf(\"%s is not a valid phone number\", ", field, ") }")
+			gen.P("func (x ", msg.GoIdent, ") CheckPhone() error {")
+			gen.P("if !isPhoneNumber(", fieldName, ") { return fmt.Errorf(\"%s is not a valid phone number\", ", fieldName, ") }")
 			gen.P("return nil")
 			gen.P("}")
 			gen.P()
 		case validate.FieldConstraints_TYPE_EMAIL:
-			gen.P("func (", firstLetter, " ", msg.GoIdent, ") CheckEmail() error {")
-			fieldName := strcase.ToCamel(value.Name)
-			field := fmt.Sprintf("%s.%s", firstLetter, fieldName)
-			gen.P("if !isEmail(", field, ") { return fmt.Errorf(\"%s is not a valid email\", ", field, ") }")
+			gen.P("func (x ", msg.GoIdent, ") CheckEmail() error {")
+			gen.P("if !isEmail(", fieldName, ") { return fmt.Errorf(\"%s is not a valid email\", ", fieldName, ") }")
 			gen.P("return nil")
 			gen.P("}")
 			gen.P()
