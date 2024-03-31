@@ -13,8 +13,8 @@ import (
 	"google.golang.org/protobuf/testing/protocmp"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter7/pkg/addressbook"
-	pb "github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter7/proto"
+	"github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter9/pkg/addressbook"
+	pb "github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter9/proto"
 )
 
 var (
