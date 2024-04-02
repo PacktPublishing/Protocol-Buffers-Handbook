@@ -4,14 +4,8 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"slices"
 
 	"github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter9/pkg/addressbook"
-)
-
-var (
-	cieKeywords = []string{"cie", "company"}
-	perKeywords = []string{"per", "person"}
 )
 
 func addContact(db io.ReadWriter, name, kind, email, emailDep, phoneNb, phoneType string) {
@@ -25,17 +19,18 @@ func addContact(db io.ReadWriter, name, kind, email, emailDep, phoneNb, phoneTyp
 		os.Exit(1)
 	}
 
-	if slices.Contains(cieKeywords, kind) {
+	switch kind {
+	case "cie", "company":
 		if err := addressbook.AddCompany(db, name, email, emailDep, phoneNb, phoneType); err != nil {
 			fmt.Printf("error: %s\n", err)
 			os.Exit(1)
 		}
-	} else if slices.Contains(perKeywords, kind) {
+	case "per", "person":
 		if err := addressbook.AddPerson(db, name, email, phoneNb, phoneType); err != nil {
 			fmt.Printf("error: %s\n", err)
 			os.Exit(1)
 		}
-	} else {
+	default:
 		fmt.Println("unknown kind", kind)
 		os.Exit(1)
 	}
