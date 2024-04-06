@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option go_package = "github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter10/bazel/proto";
+
+message Test {
+  string name = 1;
+}
