@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option go_package = "github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter6/proto";
+
 message Id {
   reserved 1;
 
