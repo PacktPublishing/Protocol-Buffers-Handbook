@@ -5,6 +5,6 @@ message Encoding {
   Embedded e = 2;
 
   message Embedded {
-    int32 i = 1;
+    int32 i32 = 1;
   }
 }

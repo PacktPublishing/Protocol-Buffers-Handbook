@@ -1,5 +1,5 @@
 syntax = "proto3";
 
 message Encoding {
-  int32 i = 1;
+  int32 i32 = 1;
 }

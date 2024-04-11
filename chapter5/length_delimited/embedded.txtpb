@@ -1,3 +1,6 @@
+# proto-file: encoding.proto
+# proto-message: Encoding
+
 e: {
-	i: 128
+   i32: 128
 }

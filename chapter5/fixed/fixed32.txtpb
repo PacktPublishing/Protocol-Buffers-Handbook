@@ -1,1 +1,4 @@
-f: 128
+# proto-file: encoding.proto
+# proto-message: Encoding
+
+f32: 128

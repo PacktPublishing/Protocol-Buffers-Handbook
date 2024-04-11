@@ -1,1 +1,4 @@
+# proto-file: encoding.proto
+# proto-message: Encoding
+
 i32: -1
