@@ -1,2 +1,5 @@
+# proto-file: user.proto
+# proto-message: User
+
 id: 42
 name: "Clément" # feel free to add your name here!
