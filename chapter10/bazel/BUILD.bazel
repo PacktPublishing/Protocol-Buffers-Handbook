@@ -1,5 +1,5 @@
 load("@gazelle//:def.bzl", "gazelle")
-load("@rules_go//go:def.bzl", "go_binary")
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
 
 # gazelle:exclude proto/**/*.go
 # gazelle:prefix github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter10/bazel
@@ -7,12 +7,19 @@ gazelle(name = "gazelle")
 
 go_binary(
     name = "my_program",
+    embed = [":bazel_lib"],
     importpath = "github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter10/bazel",
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "bazel_lib",
     srcs = ["main.go"],
+    importpath = "github.com/PacktPublishing/Protocol-Buffers-Handbook/chapter10/bazel",
+    visibility = ["//visibility:private"],
     deps = [
         "//proto:test",
         "//proto/v1:test",
         "@org_golang_google_protobuf//encoding/prototext",
     ],
-    visibility = ["//visibility:public"],
 )
