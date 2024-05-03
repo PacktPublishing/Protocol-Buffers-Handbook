@@ -54,7 +54,7 @@ With the following software and hardware list you can run all code files present
 is the CTO of Education for Ethiopia, a start-up focusing on educating K-12 students in Ethiopia. On top of that, he is also an online instructor (on Udemy, Linux Foundation, and others) teaching people about different kinds of technologies. In both his occupations, he deals with technologies such as gRPC and how to apply them to real-life use cases. His overall goal is to empower people through education and technology.
 
 ## Other Books by the Author
-* gRPC Go for Professionals [[Packt]](https://www.packtpub.com/product/grpc-go-for-professionals/9781837638840) [[Amazon]](https://a.co/d/45DMSQ4
+* gRPC Go for Professionals [[Packt]](https://www.packtpub.com/product/grpc-go-for-professionals/9781837638840) [[Amazon]](https://a.co/d/45DMSQ4)
 
 
 
