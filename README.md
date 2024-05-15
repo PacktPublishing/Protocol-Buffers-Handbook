@@ -28,6 +28,7 @@ The code will look like the following:
 
 ```proto
 syntax = "proto3";
+
 message Encoding {
   int32 i32 = 1;
 }
