@@ -26,7 +26,7 @@ All of the code is organized into folders. For example, chapter2.
 
 The code will look like the following:
 
-```
+```proto
 syntax = "proto3";
 message Encoding {
   int32 i32 = 1;
